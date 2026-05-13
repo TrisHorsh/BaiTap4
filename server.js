@@ -1,6 +1,8 @@
+require('dotenv').config();
 const express = require('express');
 const mysql = require('mysql2');
 const cors = require('cors');
+app.use(express.json());
 
 const app = express();
 app.use(cors());
@@ -60,7 +62,7 @@ app.post('/api/insert', (req, res) => {
   })
 })
 
-const PORT = process.env.PORT || 5000
-app.listen(5000, () => {
-  console.log('Run at ${PORT}')
-})
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {  // Đổi 5000 thành PORT
+  console.log(`Run at ${PORT}`); // Đổi nháy đơn thành dấu huyền (backtick)
+});
