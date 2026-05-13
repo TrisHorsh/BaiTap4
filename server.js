@@ -18,10 +18,10 @@ const db = mysql.createConnection({
 
 db.connect((err) => {
   if (err) throw err;
-  console.log('Connect successfuly')
+  console.log('Connect successfully')
 });
 
-// API
+// API Get user
 app.get('/api/users', (req, res) => {
   const sql = "select * from user";
   db.query(sql, (err, results) => {
@@ -34,9 +34,30 @@ app.get('/api/users', (req, res) => {
 
     res.json({
       success: true,
-      message: "Get user successfuly",
+      message: "Get user successfully",
       data: results
     });
+  })
+})
+
+// Mock data
+var name='Hello';
+var phone='0929294414';
+
+// API insert user
+app.post('api/insert', (req, res) => {
+  const sql = "insert into user(name,phone) values($name,$phone)";
+  db.query(sql,(err,results) => {
+    if(err){
+      return res.json({
+        success: false,
+        message: "unsucessfully insert"
+      });
+    }
+    res.json({
+      success: true,
+      message: "sucessfully insert"
+    })
   })
 })
 
