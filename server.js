@@ -41,7 +41,7 @@ app.get('/api/users', (req, res) => {
 })
 
 // API insert user
-app.post('api/insert', (req, res) => {
+app.post('/api/insert', (req, res) => {
   const name = req.body.name;
   const phone = req.body.phone;
 
