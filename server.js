@@ -40,14 +40,13 @@ app.get('/api/users', (req, res) => {
   })
 })
 
-// Mock data
-var name='Hello';
-var phone='0929294414';
-
 // API insert user
 app.post('api/insert', (req, res) => {
-  const sql = "insert into user(name,phone) values($name,$phone)";
-  db.query(sql,(err,results) => {
+  const name = req.body.name;
+  const phone = req.body.phone;
+
+  const sql = "insert into user(name,phone) values(?,?)";
+  db.query(sql, [name,phone],(err,results) => {
     if(err){
       return res.json({
         success: false,
